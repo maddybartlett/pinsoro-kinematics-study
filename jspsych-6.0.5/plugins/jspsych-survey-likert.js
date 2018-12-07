@@ -51,6 +51,18 @@ jsPsych.plugins['survey-likert'] = (function() {
     }
   }
 
+  plugin.get_video = function() {
+        var stimuli = jsPsych.data.get().values("stimulus");
+        for (var i=stimuli.length; i > 0; i--) {
+            if ("stimulus" in stimuli[i-1]) {
+               var stimulus = stimuli[i-1]["stimulus"];
+               if (stimulus.includes("clip")) {
+                    return stimulus.substring(2,stimulus.length-2);
+                }
+            }
+        }
+  }
+
   plugin.trial = function(display_element, trial) {
 
 
@@ -68,7 +80,9 @@ jsPsych.plugins['survey-likert'] = (function() {
 
     // show preamble text
     if(trial.preamble !== null){
-      html += '<div id="jspsych-survey-likert-preamble" class="jspsych-survey-likert-preamble">'+trial.preamble+'</div>';
+      html += '<div id="jspsych-survey-likert-preamble" class="jspsych-survey-likert-preamble">'+
+              '<p></p><img src="' + plugin.get_video() + '.jpg" style="width:700px;height:394px;" />' +
+              trial.preamble + '</div>';
     }
     html += '<form id="jspsych-survey-likert-form">';
 
