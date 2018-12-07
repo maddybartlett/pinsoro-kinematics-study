@@ -334,23 +334,23 @@
   timelineAssigned = timeline.concat(demographics1, demographics2, instructions1, instructions2, trial_seq, qs_attention_check, debrief, thankyou);
 
 //Save Data
-//  function saveData(filename, filedata){
-//     $.ajax({
-//        type:'post',
-//        cache: false,
-//        url: 'write_data.php',
-//        data: {filename: filename, filedata: filedata}
-//     });
-//  }
+ function saveData(filename, filedata){
+     $.ajax({
+        type:'post',
+        cache: false,
+        url: 'write_data.php',
+        data: {filename: filename, filedata: filedata}
+     });
+  }
 
 
 /* start the experiment */
   jsPsych.init({
     timeline: timelineAssigned,
-    //on_trial_finish: function(){
-      //saveData(subject_id+"_data.csv", jsPsych.data.get().csv());
-    on_finish: function() {
-      jsPsych.data.get().localSave('csv', 'P5_ValidateSkel.csv')
+    on_trial_finish: function(){
+      saveData(subject_id+"_data.csv", jsPsych.data.get().csv());
+    //on_finish: function() {
+      //jsPsych.data.get().localSave('csv', 'P5_ValidateSkel.csv')
     }
   });
 
