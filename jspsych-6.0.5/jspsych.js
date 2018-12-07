@@ -775,7 +775,6 @@ window.jsPsych = (function() {
     }
 
     global_trial_index++;
-    current_trial_finished = false;
 
     // advance timeline
     timeline.markCurrentTrialComplete();
@@ -798,6 +797,7 @@ window.jsPsych = (function() {
   function doTrial(trial) {
 
     current_trial = trial;
+    current_trial_finished = false;
 
     // process all timeline variables for this trial
     evaluateTimelineVariables(trial);
@@ -815,6 +815,12 @@ window.jsPsych = (function() {
     if(typeof trial.on_start == 'function'){
       trial.on_start(trial);
     }
+
+    // apply the focus to the element containing the experiment.
+    DOM_container.focus();
+
+    // reset the scroll on the DOM target
+    DOM_target.scrollTop = 0;
 
     // execute trial method
     jsPsych.plugins[trial.type].trial(DOM_target, trial);
@@ -1692,7 +1698,7 @@ jsPsych.randomization = (function() {
     }
 
     var random_shuffle = shuffle(arr);
-    for (var i = 0; i < random_shuffle.length - 2; i++) {
+    for (var i = 0; i < random_shuffle.length - 1; i++) {
       if (equalityTest(random_shuffle[i], random_shuffle[i + 1])) {
         // neighbors are equal, pick a new random neighbor to swap (not the first or last element, to avoid edge cases)
         var random_pick = Math.floor(Math.random() * (random_shuffle.length - 2)) + 1;
@@ -1930,6 +1936,9 @@ jsPsych.pluginAPI = (function() {
       }
 
       if (valid_response) {
+        // if this is a valid response, then we don't want the key event to trigger other actions
+        // like scrolling via the spacebar.
+        e.preventDefault();
 
         parameters.callback_function({
           key: e.keyCode,
@@ -2121,6 +2130,11 @@ jsPsych.pluginAPI = (function() {
   }
 
   module.audioContext = function(){
+    if(context !== null){
+      if(context.state !== 'running'){
+        context.resume();
+      }
+    }
     return context;
   }
 
@@ -2336,6 +2350,10 @@ jsPsych.pluginAPI = (function() {
 
     images = jsPsych.utils.unique(images);
     audio  = jsPsych.utils.unique(audio);
+
+    // remove any 0s, nulls, or false values
+    images = images.filter(function(x) { return x != false && x != null})
+    audio = audio.filter(function(x) { return x != false && x != null})
 
     var total_n = images.length + audio.length;
     var loaded = 0;
