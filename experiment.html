@@ -78,6 +78,9 @@
     rows: 1, columns: 70}],
   };
   timeline.push(mturkID);
+  jsPsych.data.addProperties({
+    mturkID: mturkID,
+  });
 // Consent.
      var consent_trial = {
        type: 'html-button-response',
