@@ -59,7 +59,7 @@
     jsPsych.data.addProperties({
       subject: participant,
       surveyCode: survey_code,
-      condition: "1",
+      condition: "2",
     });
 //Open full screen window
     var timeline = [];
@@ -109,7 +109,6 @@
      }
      timeline.push(consent_trial);
 //Demographics
-    var options_age = ["Male", "Female", "Prefer not to say"];
     var options_nation = ["American", "Indian", "British", "Other"];
     var options_lang = ["English", "Tamil", "Malayalam", "Hindi", "Spanish", "Other"];
     var options_gender = ["Male", "Female", "Prefer not to say"];
@@ -128,7 +127,7 @@
 //Instructions page
   var instructions1 = {
       type: "html-keyboard-response",
-      stimulus: "<p>During this experiment you will be shown 4 short videos of stick-figures representing children interacting.</p>" +
+      stimulus: "<p>During this experiment you will be shown 4 30-second clips of children interacting.</p>" +
       "<p> The children are sat either side of a touch-sceen table-top on which they can play a game. </p>" +
       "<p><strong> Pay particular attention to the way the children interact. </strong></p>"+
       "<p> After each video you will be asked some questions about what you have watched. <p/>",
@@ -137,7 +136,7 @@
     };
     var instructions2 = {
       type: "html-keyboard-response",
-      stimulus: "<p>During this experiment you will be shown 4 30-second clips of stick-figures representing children interacting.</p>" +
+      stimulus: "<p>During this experiment you will be shown 4 30-second clips of children interacting.</p>" +
       "<p> The children are sat either side of a touch-sceen table-top on which they can play a game. </p>" +
       "<p><strong> Pay particular attention to the way the children interact. </strong></p>"+
       "<p> After each video you will be asked some questions about what you have watched. <p/>" +
@@ -150,26 +149,11 @@
     };
     //Stimulus List
     var video_stim = [
-      { stimulus: "clips/clip_skel_01.mp4" },
-      { stimulus: "clips/clip_skel_02.mp4" },
-      { stimulus: "clips/clip_skel_03.mp4" },
-      { stimulus: "clips/clip_skel_04.mp4" },
-      { stimulus: "clips/clip_skel_05.mp4" },
-      { stimulus: "clips/clip_skel_06.mp4" },
-      { stimulus: "clips/clip_skel_07.mp4" },
-      { stimulus: "clips/clip_skel_08.mp4" },
-      { stimulus: "clips/clip_skel_09.mp4" },
-      { stimulus: "clips/clip_skel_10.mp4" },
-      { stimulus: "clips/clip_skel_11.mp4" },
-      { stimulus: "clips/clip_skel_12.mp4" },
-      { stimulus: "clips/clip_skel_13.mp4" },
-      { stimulus: "clips/clip_skel_14.mp4" },
-      { stimulus: "clips/clip_skel_15.mp4" },
-      { stimulus: "clips/clip_skel_16.mp4" },
-      { stimulus: "clips/clip_skel_17.mp4" },
-      { stimulus: "clips/clip_skel_18.mp4" },
-      { stimulus: "clips/clip_skel_19.mp4" },
-      { stimulus: "clips/clip_skel_20.mp4" }
+      { stimulus: "clips/clip_01.mp4" },
+      { stimulus: "clips/clip_02.mp4" },
+      { stimulus: "clips/clip_04.mp4" },
+      { stimulus: "clips/clip_16.mp4" },
+      { stimulus: "clips/clip_20.mp4" }
     ];
 //Selection of four random videos from above list to use in trials
   var vid_trials = jsPsych.randomization.sampleWithoutReplacement(video_stim, 4);
@@ -313,7 +297,7 @@
 //Debrief and Thankyou
     var debrief = {
       type: "html-keyboard-response",
-      stimulus: "<p>Debrief.<br /> This study examines what types of information humans can gain from observing people's movements in a social interaction. <br /> We showed you stick-figure versions of videos of social interactions between children. <br /> Other participants will have watched the original videos showing the full visual scene. <br /> We want to know what people can work out about the interaction from watching the stick-figures (movement only) compared to the original videos. <br /> The last two questions we asked you were to check how much attention you were paying to the videos and question text. We will use your responses to these questions, as well as the rest of the survey, to assess whether you completed this experiment properly. <br /> If you have any questions please contact <strong>Dr. Severin Lemaignan at severin.lemaignan@uwe.ac.uk or Madeleine Bartlett at madeleine.bartlett@plymouth.ac.uk </strong><br /> Press any key to continue. </p>"
+      stimulus: "<p>Debrief.<br /> This study examines what types of information humans can gain from observing people's movements in a social interaction. <br /> We showed you the original versions of videos of social interactions between children. <br /> Other participants will have watched versions showing stick-figures. <br /> We want to know what people can work out about the interaction from watching the stick-figures (movement only) compared to the original videos. <br /> The last two questions we asked you were to check how much attention you were paying to the videos and question text. We will use your responses to these questions, as well as the rest of the survey, to assess whether you completed this experiment properly. <br /> If you have any questions please contact <strong>Dr. Severin Lemaignan at severin.lemaignan@uwe.ac.uk or Madeleine Bartlett at madeleine.bartlett@plymouth.ac.uk </strong><br /> Press any key to continue. </p>"
     };
     var thankyou = {
     type: "html-keyboard-response",
