@@ -151,8 +151,23 @@
     var video_stim = [
       { stimulus: "clips/clip_01.mp4" },
       { stimulus: "clips/clip_02.mp4" },
+      { stimulus: "clips/clip_03.mp4" },
       { stimulus: "clips/clip_04.mp4" },
+      { stimulus: "clips/clip_05.mp4" },
+      { stimulus: "clips/clip_06.mp4" },
+      { stimulus: "clips/clip_07.mp4" },
+      { stimulus: "clips/clip_08.mp4" },
+      { stimulus: "clips/clip_09.mp4" },
+      { stimulus: "clips/clip_10.mp4" },
+      { stimulus: "clips/clip_11.mp4" },
+      { stimulus: "clips/clip_12.mp4" },
+      { stimulus: "clips/clip_13.mp4" },
+      { stimulus: "clips/clip_14.mp4" },
+      { stimulus: "clips/clip_15.mp4" },
       { stimulus: "clips/clip_16.mp4" },
+      { stimulus: "clips/clip_17.mp4" },
+      { stimulus: "clips/clip_18.mp4" },
+      { stimulus: "clips/clip_19.mp4" },
       { stimulus: "clips/clip_20.mp4" }
     ];
 //Selection of four random videos from above list to use in trials
@@ -318,10 +333,10 @@
   }
 /* start the experiment */
   jsPsych.init({
-    timeline: timelineAssigned,
-    on_trial_finish: function(){
-      saveData(subject_id+"_data.csv", jsPsych.data.get().csv());
-    }
+    timeline: timelineAssigned
+    //on_trial_finish: function(){
+    //  saveData(subject_id+"_data.csv", jsPsych.data.get().csv());
+    //}
   });
 </script>
 </html>
